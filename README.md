@@ -1,54 +1,87 @@
-# React + TypeScript + Vite
+# Invoize
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+_Invoize_ es una aplicación diseñada para freelancers que permite generar y administrar facturas de manera sencilla y profesional. La aplicación permite a los usuarios registrarse, ingresar datos de clientes, direcciones, productos, tarifas por hora y calcular automáticamente subtotales e impuestos (por ejemplo, el 12% de comisión de PayPal). Además, ofrece opciones para descargar las facturas en formato PDF, imagen o generar un enlace para visualizarlas online.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características principales
 
-## Expanding the ESLint configuration
+-    **Registro y gestión de usuarios**  
+     Permite a los usuarios registrarse y gestionar su perfil.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-    **Gestión de clientes y datos de facturación**  
+     Registro de clientes, incluyendo información detallada de dirección y otros datos relevantes.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+-    **Generación de facturas automatizada**  
+     Los usuarios pueden ingresar los servicios prestados (horas trabajadas, precio por hora) y el sistema calcula el total, aplicando impuestos y comisiones (por ejemplo, el 12% de PayPal).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+-    **Opciones de descarga y visualización:**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+     -    Descarga de facturas en formato PDF o imagen.
+     -    Generación de enlaces para visualizar las facturas de forma online.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+-    **Personalización:**  
+     Posibilidad de subir logotipos y otros elementos visuales para personalizar las facturas.
+
+---
+
+## Tecnologías utilizadas
+
+-    **Gestión de dependencias:** [pnpm](https://pnpm.io/)
+-    **Framework de Frontend:** [React](https://reactjs.org/) mediante [Vite](https://vitejs.dev/)
+-    **Estilos y diseño:** [Tailwind CSS](https://tailwindcss.com/), [daisyUI](https://daisyui.com/)
+-    **Backend:** [Supabase](https://supabase.com/)
+-    **Hosting del Frontend:** [Vercel](https://vercel.com/)
+
+---
+
+## Instalación y configuración de DaisyUI con Tailwind CSS
+
+Sigue estos pasos para integrar Tailwind CSS y DaisyUI en tu proyecto:
+
+1.   **Instalar las dependencias:**
+
+     Ejecuta en la terminal:
+
+     ```bash
+     npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
+     ```
+
+2.   **Configurar Vite con Tailwind CSS:**
+
+     Crea o edita el archivo `vite.config.js` y agrega lo siguiente:
+
+     ```javascript
+     import { defineConfig } from "vite";
+     import tailwindcss from "@tailwindcss/vite";
+     import react from "@vitejs/plugin-react";
+
+     export default defineConfig({
+          plugins: [tailwindcss(), react()],
+     });
+     ```
+
+3.   **Agregar Tailwind CSS y DaisyUI en tu archivo CSS:**
+
+     En el archivo `src/App.css`, incluye lo siguiente:
+
+     ```css
+     @import "tailwindcss";
+     @plugin "daisyui";
+     ```
+
+4.   **Uso de clases de DaisyUI:**
+
+     Una vez configurado, podrás utilizar las clases de DaisyUI en tus componentes React para crear una interfaz atractiva y profesional.
+
+---
+
+## Resumen
+
+_Invoize_ es la herramienta ideal para freelancers que buscan simplificar la creación y gestión de sus facturas, garantizando transparencia en los cobros y una experiencia de usuario moderna y eficiente. Con la integración de tecnologías como React, Tailwind CSS, DaisyUI, Supabase y Vercel, este proyecto está orientado a ofrecer un producto robusto, escalable y visualmente atractivo.
+
+¡Bienvenido a Invoize!
+
+---
+
+_Desarrollado con pasión y compromiso._
