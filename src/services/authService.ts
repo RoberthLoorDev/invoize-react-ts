@@ -7,6 +7,15 @@ interface SignUpResponse {
      error: string | null;
 }
 
+interface SignInResponse {
+     user: AuthResponse["data"]["user"] | null;
+     error: string | null;
+}
+
+interface SignOutResponse {
+     error: string | null;
+}
+
 export const authService = {
      async signUp(formData: SignUpFormData): Promise<SignUpResponse> {
           const { email, password, firstName, lastName, userType } = formData;
@@ -50,6 +59,35 @@ export const authService = {
                return { user: data.user, error: null };
           } catch (error) {
                return { user: null, error: (error as Error).message };
+          }
+     },
+
+     async signIn(email: string, password: string): Promise<SignInResponse> {
+          try {
+               const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password,
+               });
+
+               if (error) {
+                    return { user: null, error: error.message };
+               }
+
+               return { user: data.user, error: null };
+          } catch (error) {
+               return { user: null, error: (error as Error).message };
+          }
+     },
+
+     async signOut(): Promise<SignOutResponse> {
+          try {
+               const { error } = await supabase.auth.signOut();
+               if (error) {
+                    return { error: error.message };
+               }
+               return { error: null };
+          } catch (error) {
+               return { error: (error as Error).message };
           }
      },
 };
