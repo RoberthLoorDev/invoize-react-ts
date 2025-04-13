@@ -5,3 +5,7 @@
      default: true;
      --color-base-100: #f7f7f7; /* Esto hace el fondo blanco */
 }
+
+body {
+     font-family: "Lato", sans-serif;
+}
